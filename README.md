@@ -67,3 +67,8 @@ aws dynamodb put-item --table-name Orders --item '{"OrderID: {"S": "1"}, "Produc
 - Go to Cloudwatch > Log Groups > /ecs/frontend and /ecs/backend to view service logs
 
 6. Clean UP
+- Destroy resources to avoid charges:
+```
+terraform destroy
+```
+- Delete ECR images
