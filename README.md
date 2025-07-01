@@ -28,19 +28,26 @@ This lab demonstrates deploying a microservices-based application on AWS using T
 -  Authenticate Docker to Amazon ECR:
 `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com`
 -  BuilD and push frontend:
-``` cd frontend
+```
+cd frontend
 docker build -t microservices-frontend .
 docker tag microservices-frontend:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
-docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest ```
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
+```
 
 - Build and push backend:
-```cd frontend
+```
+cd frontend
 docker build -t microservices-frontend .
 docker tag microservices-frontend:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
-docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest```
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
+```
+
 - Replace <account-id> with your AWS account ID.
 
 3. Deploy infractructure:
-```terraform init
+```
+terraform init
 terraform plan`
-terraform apply```
+terraform apply
+```
