@@ -1,11 +1,9 @@
-###Deploy a Microservices Application
+### Deploy a Microservices Application
 
 ## Overview
-This advanced lab demonstrates deploying a real-world microservices-based application on AWS using Terraform. The application consists of two microservices: a **frontend** (Node.js) serving a web interface and a **backend** (Python) interacting with DynamoDB for data storage. The microservices run on Amazon ECS with Fargate, are load-balanced using an Application Load Balancer (ALB), and use Amazon ECR for container storage. CloudWatch is integrated for logging.
+This lab demonstrates deploying a microservices-based application on AWS using Terraform. The application consists of two microservices: a **frontend** (Node.js) serving a web interface and a **backend** (Python) interacting with DynamoDB for data storage. The microservices run on Amazon ECS with Fargate, are load-balanced using an Application Load Balancer (ALB), and use Amazon ECR for container storage. CloudWatch is integrated for logging.
 **Objective**: Deploy a scalable microservices application with ECS Fargate, ALB, and DynamoDB, simulating a production-grade architecture.
 **AWS Services Used**: ECS (Fargate), ALB, DynamoDB, ECR, IAM, CloudWatch  
-**Difficulty**: Advanced  
-**Duration**: ~90 minutes  
 **Prerequisites**:
 - AWS account (preferably with Free Tier eligibility)
 - Terraform installed
@@ -20,3 +18,12 @@ This advanced lab demonstrates deploying a real-world microservices-based applic
 - **ECR**: Hosts container images for both microservices.
 - **ECS Fargate**: Runs the containerized microservices.
 - **CloudWatch**: Collects logs from both services.
+
+## Step-by-Stem Guied
+1.  Set Up Environment:
+•  Install Terraform: Download from terraform.io.
+•  Configure AWS CLI: Run aws configure with your AWS Access Key ID, Secret Access Key, and region (us-east-1).
+•  Install Docker for building container images.
+2.  Build and Push Container Images:
+•  Authenticate Docker to Amazon ECR:
+`aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com`
