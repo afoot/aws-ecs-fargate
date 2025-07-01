@@ -26,7 +26,9 @@ This lab demonstrates deploying a microservices-based application on AWS using T
 -  Install Docker for building container images.
 2.  Build and Push Container Images:
 -  Authenticate Docker to Amazon ECR:
-`aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com`
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com
+```
 -  BuilD and push frontend:
 ```
 cd frontend
@@ -48,6 +50,20 @@ docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:
 3. Deploy infractructure:
 ```
 terraform init
-terraform plan`
+terraform plan
 terraform apply
 ```
+4. Test the Application:
+
+- Open terraform outputs http://<alb_dns_name> in a browser to see "Hello from Frontend Microservice!"
+- Access http://<alb_dns_name>/api/order/1 to test the backend (returns empty initially)
+- Populate the DynameDB table with simple data using the AWS CLI:
+```
+aws dynamodb put-item --table-name Orders --item '{"OrderID: {"S": "1"}, "Product": {"S": "Laptop"}}' --region us-east-1
+```
+- Retest the backend endpoint to verify the data
+
+5. Monitor Logs:
+- Go to Cloudwatch > Log Groups > /ecs/frontend and /ecs/backend to view service logs
+
+6. Clean UP
