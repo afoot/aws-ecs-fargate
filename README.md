@@ -21,9 +21,26 @@ This lab demonstrates deploying a microservices-based application on AWS using T
 
 ## Step-by-Stem Guied
 1.  Set Up Environment:
-•  Install Terraform: Download from terraform.io.
-•  Configure AWS CLI: Run aws configure with your AWS Access Key ID, Secret Access Key, and region (us-east-1).
-•  Install Docker for building container images.
+-  Install Terraform: Download from terraform.io.
+-  Configure AWS CLI: Run aws configure with your AWS Access Key ID, Secret Access Key, and region (us-east-1).
+-  Install Docker for building container images.
 2.  Build and Push Container Images:
-•  Authenticate Docker to Amazon ECR:
+-  Authenticate Docker to Amazon ECR:
 `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com`
+-  BuilD and push frontend:
+` cd frontend
+docker build -t microservices-frontend .
+docker tag microservices-frontend:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest `
+
+- Build and push backend:
+`cd frontend
+docker build -t microservices-frontend .
+docker tag microservices-frontend:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/microservices-frontend:latest`
+- Replace <account-id> with your AWS account ID.
+
+3. Deploy infractructure:
+`terraform init`
+`terraform plan`
+`terraform apply`
